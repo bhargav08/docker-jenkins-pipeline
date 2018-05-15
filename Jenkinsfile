@@ -9,7 +9,7 @@ node {
 
   stage('Create Docker Image') {
     dir('webapp') {
-      sh "sudo docker build -t arungupta/docker-jenkins-pipeline:2"
+      sh "sudo docker build -t arungupta/docker-jenkins-pipeline:2 ."
     }
   }
 
