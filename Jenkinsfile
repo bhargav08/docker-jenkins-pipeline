@@ -9,6 +9,7 @@ node {
 
   stage('Create Docker Image') {
     dir('webapp') {
+      sh "sudo su"
       docker.build("arungupta/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
     }
   }
@@ -19,6 +20,7 @@ node {
       // sh 'docker run -d --name db -p 8091-8093:8091-8093 -p 11210:11210 arungupta/oreilly-couchbase:latest'
 
       // Run application using Docker image
+      sh "sudo su"
       sh "DB=`docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' db`"
       sh "docker run -e DB_URI=$DB arungupta/docker-jenkins-pipeline:${env.BUILD_NUMBER}"
 
